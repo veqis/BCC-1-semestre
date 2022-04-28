@@ -7,40 +7,33 @@
 void DigitarTabela(char tabuleiro[3][3]);
 void Jogador1(char tabuleiro[3][3]);
 void Jogador2(char tabuleiro[3][3]);
-int verifica(char tabuleiro[3][3]);
-void jogo();
+int verifica(char tabuleiro[3][3], int *ganhou);
+
 
 int main(void)
 {
-    jogo();
-    return 0;
-}
-
-void jogo()
-{
-    char tabuleiro[3][3] = {'_','_','_','_','_','_','_','_','_'};
-    int ganhou = FALSE;
+    char tabuleiro[3][3] = {'o','o','_','_','_','_','_','_','_'};
+    int *ganhou = FALSE;
     
-    while (ganhou == FALSE)
+    do
     {
         DigitarTabela(tabuleiro);
         Jogador1(tabuleiro);
-        verifica(tabuleiro);
+        DigitarTabela(tabuleiro);
+        verifica(tabuleiro, *ganhou);
         
 
         DigitarTabela(tabuleiro);
         Jogador2(tabuleiro);
-        verifica(tabuleiro);  
-         
-    }
-    
+        DigitarTabela(tabuleiro);
+        verifica(tabuleiro, *ganhou);
+    } while (*ganhou == FALSE);
+        
     return 0;
 }
 
-int verifica(char tabuleiro[3][3])
+int verifica(char tabuleiro[3][3], int *ganhou)
 {
-    int ganhou;
-
     for (int i = 0; i < 3; i++)
     {
         if (tabuleiro[i][0] == tabuleiro[i][1] && tabuleiro[i][1] == tabuleiro[i][2] && tabuleiro[i][1] != '_')
@@ -48,12 +41,12 @@ int verifica(char tabuleiro[3][3])
            if (tabuleiro[i][0] == 'o')
            {
                printf("\n\n\nJogador 1 ganhou\n\n\n");
-               ganhou = TRUE;
+               *ganhou = TRUE;
            }
            else
            {
                printf("\n\n\nJogador 2 ganhou\n\n\n");
-               ganhou = TRUE;
+               *ganhou = TRUE;
            }
            
         }
@@ -67,12 +60,12 @@ int verifica(char tabuleiro[3][3])
             if (tabuleiro[i][0] == 'o')
            {
                printf("\n\n\nJogador 1 ganhou\n\n\n");
-               ganhou = TRUE;
+               *ganhou = TRUE;
            }
            else
            {
                printf("\n\n\nJogador 2 ganhou\n\n\n");
-               ganhou = TRUE;
+               *ganhou = TRUE;
            }
         }
         
@@ -83,12 +76,12 @@ int verifica(char tabuleiro[3][3])
         if (tabuleiro[1][1] == 'o')
            {
                printf("\n\n\nJogador 1 ganhou\n\n\n");
-               ganhou = TRUE;
+               *ganhou = TRUE;
            }
            else
            {
                printf("\n\n\nJogador 2 ganhou\n\n\n");
-               ganhou = TRUE;
+               *ganhou = TRUE;
            }
     }
 
@@ -97,15 +90,15 @@ int verifica(char tabuleiro[3][3])
         if (tabuleiro[1][1] == 'o')
            {
                printf("\n\n\nJogador 1 ganhou\n\n\n");
-               ganhou = TRUE;
+               *ganhou = TRUE;
            }
            else
            {
                printf("\n\n\nJogador 2 ganhou\n\n\n");
-               ganhou = TRUE;
+               *ganhou = TRUE;
            }
     }
-    return ganhou;
+    return *ganhou;
 }
 
 void Jogador1(char tabuleiro[3][3])
