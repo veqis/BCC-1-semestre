@@ -12,7 +12,7 @@ int verifica(char tabuleiro[3][3], int *ganhou);
 
 int main(void)
 {
-    char tabuleiro[3][3] = {'o','o','_','_','_','_','_','_','_'};
+    char tabuleiro[3][3] = {'_','_','_','_','_','_','_','_','_'};
     int *ganhou = FALSE;
     
     do
